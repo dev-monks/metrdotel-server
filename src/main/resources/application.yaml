@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gcp:
+      security:
+        firebase:
+          project-id: 	metrdotel
+
+      project-id: metrdotel
+      firestore:
+        credentials:
+          location: classpath:metrdotel-firebase-adminsdk-lf14b-ae0a2ccb3c.json
+
