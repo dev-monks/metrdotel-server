@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    gcp:
+      firestore:
+        credentials:
+          location: $application.json
+
