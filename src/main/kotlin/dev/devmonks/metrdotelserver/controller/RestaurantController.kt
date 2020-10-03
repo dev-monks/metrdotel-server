@@ -2,6 +2,7 @@ package dev.devmonks.metrdotelserver.controller
 
 import dev.devmonks.metrdotelserver.dto.request.CreateRestaurantRequest
 import dev.devmonks.metrdotelserver.dto.request.UpdateRestaurantRequest
+import dev.devmonks.metrdotelserver.model.PlaceType
 import dev.devmonks.metrdotelserver.model.Restaurant
 import dev.devmonks.metrdotelserver.service.RestaurantService
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,12 +27,12 @@ class RestaurantController(@Autowired val restaurantService: RestaurantService) 
 
     @GetMapping("/price-range/{priceRange}")
     fun getRestaurantsByPriceRange(@PathVariable priceRange: Int): Flux<Restaurant> {
-        return this.restaurantService.get()
+        return this.restaurantService.getAllByPriceRange(priceRange)
     }
 
     @GetMapping("/type/{type}")
     fun getRestaurantsByType(@PathVariable type: String): Flux<Restaurant> {
-        return this.restaurantService.get()
+        return this.restaurantService.getAllByType(PlaceType.fromString(type))
     }
 
     @GetMapping("/{id}")
@@ -40,12 +41,13 @@ class RestaurantController(@Autowired val restaurantService: RestaurantService) 
     }
 
     @PutMapping("/{id}")
-    fun updateRestaurant(@RequestBody payload: UpdateRestaurantRequest, @PathVariable id: String) {
-
+    fun updateRestaurant(@RequestBody payload: UpdateRestaurantRequest, @PathVariable id: String): Mono<Restaurant> {
+        payload.id = id
+        return this.restaurantService.update(payload.toRestaurant(), id)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteRestaurant(@PathVariable id: String): Mono<Void> {
+    fun deleteRestaurant(@PathVariable id: String): Mono<Boolean> {
         return this.restaurantService.delete(id)
     }
 }

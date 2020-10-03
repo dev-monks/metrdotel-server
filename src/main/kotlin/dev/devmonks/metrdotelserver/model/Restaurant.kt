@@ -4,7 +4,7 @@ import com.google.cloud.firestore.annotation.DocumentId
 import org.springframework.cloud.gcp.data.firestore.Document
 import java.time.LocalDateTime
 
-@Document(collectionName = "users")
+@Document(collectionName = "restaurants")
 data class Restaurant(
         @DocumentId val id: String? = null,
         var amenities: List<Amenity>? = null,

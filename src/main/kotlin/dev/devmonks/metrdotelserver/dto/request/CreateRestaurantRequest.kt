@@ -14,7 +14,6 @@ class CreateRestaurantRequest(var amenities: List<String>,
                               var latitude: Double) {
     fun toRestaurant(): Restaurant {
         return Restaurant(
-                id = null,
                 amenities = this.amenities.map{amenity -> Amenity.fromString(amenity)},
                 type = PlaceType.fromString(this.type),
                 coverImage = this.coverImage,
@@ -23,8 +22,6 @@ class CreateRestaurantRequest(var amenities: List<String>,
                 location = Location(this.locationName, this.longitude, this.latitude),
                 description = this.description,
                 openingHours = this.openingHours
-//                        .map { openingHour -> Day.fromString(openingHour.key) to openingHour.value }
-//                        .toMap()
         )
     }
 }

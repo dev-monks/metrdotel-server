@@ -1,6 +1,6 @@
 package dev.devmonks.metrdotelserver.service
 
-import com.google.cloud.firestore.DocumentReference
+import com.google.cloud.firestore.Firestore
 import dev.devmonks.metrdotelserver.model.PlaceType
 import dev.devmonks.metrdotelserver.model.Restaurant
 import dev.devmonks.metrdotelserver.repository.RestaurantRepository
@@ -10,7 +10,7 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
-class RestaurantService(@Autowired val restaurantRepository: RestaurantRepository) {
+class RestaurantService(@Autowired val restaurantRepository: RestaurantRepository, @Autowired val firestore: Firestore) {
 
     fun create(restaurant: Restaurant): Mono<Restaurant> {
         return this.restaurantRepository.save(restaurant)
@@ -36,7 +36,11 @@ class RestaurantService(@Autowired val restaurantRepository: RestaurantRepositor
         return this.restaurantRepository.save(restaurant)
     }
 
-    fun delete(id: String): Mono<Void> {
-        return this.restaurantRepository.deleteById(id)
+    fun delete(id: String): Mono<Boolean> {
+        return this.restaurantRepository.deleteById(id).flatMap { Mono.just(true) }
+    }
+
+    fun getNewReference(): Mono<String> {
+        return Mono.just(this.firestore.collection("restaurants").document().toString())
     }
 }

@@ -2,7 +2,7 @@ package dev.devmonks.metrdotelserver.dto.request
 
 import dev.devmonks.metrdotelserver.model.*
 
-class UpdateRestaurantRequest(val id: String,
+class UpdateRestaurantRequest(var id: String?,
                               var amenities: List<String>,
                               var type: String,
                               var coverImage: String,
@@ -24,8 +24,6 @@ class UpdateRestaurantRequest(val id: String,
                 location = Location(this.locationName, this.longitude, this.latitude),
                 description = this.description,
                 openingHours = this.openingHours
-//                        .map { openingHour -> Day.fromString(openingHour.key) to openingHour.value }
-//                        .toMap()
         )
     }
 }
