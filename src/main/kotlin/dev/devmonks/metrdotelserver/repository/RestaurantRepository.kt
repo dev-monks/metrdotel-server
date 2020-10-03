@@ -8,7 +8,6 @@ import reactor.core.publisher.Mono
 interface RestaurantRepository : FirestoreReactiveRepository<Restaurant> {
     fun findAllByPriceRange(priceRange: Int): Flux<Restaurant>
     fun findAllByType(type: PlaceType): Flux<Restaurant>
-    fun findByReviewsContaining(reviewId: String): Mono<Restaurant>
 }
 
 interface ReservationRepository : FirestoreReactiveRepository<Reservation>
