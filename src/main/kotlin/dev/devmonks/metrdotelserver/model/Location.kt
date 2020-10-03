@@ -4,7 +4,9 @@ import com.google.cloud.firestore.annotation.DocumentId
 import org.springframework.cloud.gcp.data.firestore.Document
 import java.time.LocalDateTime
 
-data class Location(val name: String, val longitude: Double, val latitude: Double)
+data class Location(val name: String?, val longitude: Double?, val latitude: Double?){
+    constructor(): this(null, null, null)
+}
 
 @Document(collectionName = "reviews")
 data class Review(@DocumentId val id: String, val placeId: String, var comment: String, var rating: Int)

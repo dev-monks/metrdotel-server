@@ -23,8 +23,8 @@ class CreateRestaurantRequest(var amenities: List<String>,
                 location = Location(this.locationName, this.longitude, this.latitude),
                 description = this.description,
                 openingHours = this.openingHours
-                        .map { openingHour -> Day.fromString(openingHour.key) to openingHour.value }
-                        .toMap()
+//                        .map { openingHour -> Day.fromString(openingHour.key) to openingHour.value }
+//                        .toMap()
         )
     }
 }
