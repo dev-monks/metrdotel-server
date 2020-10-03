@@ -4,4 +4,6 @@ spring:
       firestore:
         credentials:
           location: $application.json
-
+      security:
+        firebase:
+          project-id: metrdotel
