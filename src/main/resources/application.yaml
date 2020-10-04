@@ -7,3 +7,7 @@ spring:
       security:
         firebase:
           project-id: metrdotel
+
+gcs:
+  resources:
+    bucket: metrdotel.appspot.com

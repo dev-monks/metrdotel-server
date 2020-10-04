@@ -27,6 +27,7 @@ dependencies {
     implementation("com.google.firebase:firebase-admin:7.0.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("org.springframework.cloud:spring-cloud-gcp-starter")
+    implementation("org.springframework.cloud:spring-cloud-gcp-starter-storage")
     implementation("org.springframework.cloud:spring-cloud-gcp-starter-firestore")
     implementation("org.springframework.cloud:spring-cloud-gcp-starter-data-firestore")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
